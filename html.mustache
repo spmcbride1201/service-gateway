@@ -13,7 +13,7 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
     <base href="/">
-    <title>GM API Gateway</title>
+    <title>Grey Matter Microservice Fabric</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -58,7 +58,7 @@
 </br>
 <b><i>Online Service Registry:</i></b>
 </br>
-<div id="services"></div>
+<div id="services" class="service-list"></div>
 <script>
 	//Build object model
 	var serviceList = {};
@@ -88,14 +88,12 @@
 
 
 				if(serviceInfo.hasServers) {
-					serviceHtml += "<a href=" + serviceInfo.url + ">" + serviceInfo.description + "</a></br>";
+					serviceHtml += "<a class='service service-up' href=" + serviceInfo.url + ">" + serviceInfo.description + "</a>";
 				} else {
-					serviceHtml += "<i>" + serviceInfo.description + " - Is OffLine</i></br>";
+					serviceHtml += "<div class='service service-up'>" + serviceInfo.description + " - Is OffLine</div>";
 				}
 			}
-
-			serviceHtml += "</br>"
-		     }
+     }
 		}
 	}
 

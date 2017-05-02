@@ -2,10 +2,25 @@
 
 :root {
   --navbar-height: 42px;
+
   --padding-base: 16px;
-  --font-stack-base: 'Avenir Next';
+
   --color-background-black: #000;
   --color-background-grey: #151515;
+
+  --color-brand-primary: #0aab2a;
+  --color-brand-a11y: #05801D;
+  --color-link: var(--color-brand-primary);
+
+  --border-radius-base: 2px;
+
+  --font-stack-base: 'Avenir Next W01';
+  --font-size-base: 16px;
+  --font-size-plus-1: 18px;
+  --font-size-plus-2: 24px;
+  --font-size-plus-3: 32px;
+  --font-size-plus-4: 48px;
+  --font-size-plus-5: 64px;
 }
 
 
@@ -15,6 +30,49 @@ html {
   font-family: var(--font-stack-base);
 }
 
+*,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-stack-base);
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+  color: var(--color-link);
+}
+
+
+/* Layout */
+
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  height: calc(100vh - var(--navbar-height));
+}
+
+.services-content,
+.grey-matter-content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+}
+
+.services-content {
+  padding: var(--padding-base);
+}
+
+.grey-matter-content {
+  padding: var(--padding-base);
+  border-top: 1px solid var(--color-background-grey);
+  background-color: var(--color-background-black);
+}
 
 
 /* Navbar Styles */
@@ -46,4 +104,52 @@ html {
 
 #architecture-diagram {
   width: 90%;
+}
+
+
+/* Service List Styles */
+
+.services-list {
+  --color-service-background: #fff;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.services-list .service {
+  display: block;
+  padding: calc(var(--padding-base) * 2) var(--padding-base);
+  border: 1px solid rgba(0,0,0,.1);
+  margin-bottom: var(--padding-base);
+  border-radius: var(--border-radius-base);
+  background-color: var(--color-service-background);
+  text-decoration: none;
+}
+
+.service .status {
+  display: block;
+  margin: 0;
+}
+
+.service .service-title {
+  font-size: var(--font-size-plus-1);
+  margin: 0;
+}
+
+.service.service-up {
+
+}
+.service.service-up .service-title {
+  color: var(--color-brand-a11y);
+}
+.service.service-up:hover {
+  background-color: rgba(0,0,0,.02);
+}
+.service.service-up:active,
+.service.service-up:focus {
+  background-color: rgba(0,0,0,.05);
+}
+
+.service.service-down {
+  background-color: rgba(0,0,0,.05);
+  border-color: transparent;
 }

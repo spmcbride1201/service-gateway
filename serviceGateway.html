@@ -53,98 +53,83 @@
 
   </div>
   <!-- END CONTENT HEADER -->
-  <div class="uk-container">
-    <div uk-grid>
-      <div class="uk-width-1-2 uk-card uk-card-default">
-        <h3 class="uk-card-title">Grey Matter Fabric Architecture</h3>
-        <img id="architecture-diagram" src="./images/diagram-gm-fabric.png">
-      </div>
-      <div class="uk-width-1-2 uk-card uk-card-default">
-        <h3 class="uk-card-title">Grey Matter Fabric Architecture</h3>
-        <img id="architecture-diagram" src="./images/diagram-gm-fabric.png">
-      </div>
-      <div class="uk-width-1-1 uk-card uk-card-default">
-        <h3 class="uk-card-title">Services</h3>
-        <b><i>Online Service Registry:</i></b>
-        </br>
-        <div id="services"></div>
-        <script>
-          //Build object model
-          var serviceList = {};
+  <div class="container">
+    <div class="services-content">
+      <h3>Services</h3>
+      <div id="services" class="services-list"></div>
+      <script>
+        //Build object model
+        var serviceList = {};
 
-          serviceList.aac = [];
-          serviceList.aac = [];
-          serviceList.apps = [];
-          serviceList.apps = [];
-          serviceList.user = [];
-          serviceList.user = [];
-          serviceList.odrive = [];
-          serviceList.es = [];
-          serviceList.es = [];
-          var service = {};
+        serviceList.aac = [];
+        serviceList.aac = [];
+        serviceList.apps = [];
+        serviceList.apps = [];
+        serviceList.user = [];
+        serviceList.user = [];
+        serviceList.odrive = [];
+        serviceList.es = [];
+        serviceList.es = [];
 
-          service.description = "Grey Matter Security v1.1";
-          service.url = "https://private.deciphernow.com/services/aac/1.1/admin";
-          service.hasServers = true;
-          serviceList.aac.push(service);
+        var service = {};
+        service.description = "Grey Matter Security v1.1";
+        service.url = "https://private.deciphernow.com/services/aac/1.1/admin";
+        service.hasServers = true;
+        serviceList.aac.push(service);
 
-          var service = {};
-          service.description = "Grey Matter Apps v1.0";
-          service.url = "https://private.deciphernow.com/services/apps/1.0/admin";
-          service.hasServers = true;
-          serviceList.apps.push(service);
+        var service = {};
+        service.description = "Grey Matter Apps v1.0";
+        service.url = "https://private.deciphernow.com/services/apps/1.0/admin";
+        service.hasServers = true;
+        serviceList.apps.push(service);
 
 
-          var service = {};
-          service.description = "Grey Matter Data v1.0";
-          service.url = "https://private.deciphernow.com/services/object-drive/1.0/";
-          service.hasServers = true;
-          serviceList.odrive.push(service);
+        var service = {};
+        service.description = "Grey Matter Data v1.0";
+        service.url = "https://private.deciphernow.com/services/object-drive/1.0/";
+        service.hasServers = true;
+        serviceList.odrive.push(service);
 
-          var service = {};
-          service.description = "Elasticsearch Security Service v1.0";
-          service.url = "https://private.deciphernow.com/services/ess/1.0/admin";
-          service.hasServers = true;
-          serviceList.es.push(service);
+        var service = {};
+        service.description = "Elasticsearch Security Service v1.0";
+        service.url = "https://private.deciphernow.com/services/ess/1.0/admin";
+        service.hasServers = false;
+        serviceList.es.push(service);
 
-          var service = {};
-          service.description = "User Service v1.0";
-          service.url = "https://private.deciphernow.com/services/userservice/1.0/admin";
-          service.hasServers = true;
-          serviceList.user.push(service);
+        var service = {};
+        service.description = "User Service v1.0";
+        service.url = "https://private.deciphernow.com/services/userservice/1.0/admin";
+        service.hasServers = true;
+        serviceList.user.push(service);
 
-          //Create HTML based on categories
-          var serviceHtml = '';
-          for (var serviceCategory in serviceList) {
+        //Create HTML based on categories
+        var serviceHtml = '';
+        for (var serviceCategory in serviceList) {
 
-            if (serviceCategory != 'hide') {
-              if (serviceList.hasOwnProperty(serviceCategory)) {
-                var serviceEndpoints = serviceList[serviceCategory];
+          if (serviceCategory != 'hide') {
+            if (serviceList.hasOwnProperty(serviceCategory)) {
+              var serviceEndpoints = serviceList[serviceCategory];
 
-                for (var service in serviceEndpoints) {
-                  var serviceInfo = serviceEndpoints[service];
+              for (var service in serviceEndpoints) {
+                var serviceInfo = serviceEndpoints[service];
 
 
-                  if (serviceInfo.hasServers) {
-                    serviceHtml += "<a href=" + serviceInfo.url + ">" + serviceInfo.description + "</a></br>";
-                  } else {
-                    serviceHtml += "<i>" + serviceInfo.description + " - Is OffLine</i></br>";
-                  }
+                if (serviceInfo.hasServers) {
+                  serviceHtml += "<a class='service service-up' href=" + serviceInfo.url + "><h1 class='service-title'>" + serviceInfo.description + "</h1></a>";
+                } else {
+                  serviceHtml += "<div class='service service-down'><h1 class='service-title'>" + serviceInfo.description + "</h1><p class='status'>OffLine</p></div>";
                 }
-
-                serviceHtml += "</br>"
               }
             }
           }
+        }
+        document.getElementById("services").innerHTML = serviceHtml;
 
-          document.getElementById("services").innerHTML = serviceHtml;
-
-        </script>
-      </div>
+      </script>
     </div>
-    </br>
-    </br>
+    <div class="grey-matter-content">
 
+    </div>
   </div>
 </body>
 
