@@ -1,24 +1,26 @@
 .uk-navbar {
-  height: 40px;
-  background: #151515;
+  height: 42px;
+  background: #000000;
 }
 
-#product-logo {
-  margin-left: 20px;
-}
-
-#logo-text {
-  margin-left: 5px;
-  font-size: x-large;
-  color: #30B44A;
+.navbar #product-logo {
+  padding: 0 16px;
+  width: calc(102px + 32px);
+  border-right: 1px solid #2b2b2b;
+  height: inherit;
 }
 
 #decipher-logo {
-  width: '20px';
+  width: 34px;
+  padding: 3px 12px 3px 0px;
+  border-right: 1px solid #2b2b2b;
+  height: inherit;
 }
 
-#product-logo {
-  width: '20px';
+.navbar #logo-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: -999;
 }
 
 #architecture-diagram {
