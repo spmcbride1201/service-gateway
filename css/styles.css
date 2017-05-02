@@ -208,16 +208,29 @@ a:focus {
   margin: 0;
   padding: 0;
 }
+.service > a {
+  display: block;
+  text-decoration: none;
+}
+.service > a:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
 
-.service[href*="aac"].service-up,
-.service[href*="object-drive"].service-up,
-.service[href*="apps"].service-up {
+.service[class*="aac"].service-up,
+.service[class*="object-drive"].service-up,
+.service[class*="apps"].service-up {
   order: calc(var(--service-order-services-up) - 1);
 }
 
-.service[href*="aac"].service-down,
-.service[href*="object-drive"].service-down,
-.service[href*="apps"].service-down {
+.service[class*="aac"].service-down,
+.service[class*="object-drive"].service-down,
+.service[class*="apps"].service-down {
   order: calc(var(--service-order-services-down) - 1);
 }
 
@@ -252,6 +265,13 @@ a:focus {
   color: var(--color-service-down);
   background-color: currentColor;
   border-radius: 0;
+}
+
+.service .service-links {
+  margin: 0;
+  font-size: var(--font-size-base);
+  position: relative;
+  z-index: 2;
 }
 
 

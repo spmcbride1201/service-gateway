@@ -97,10 +97,6 @@
         service.hasServers = false;
         serviceList.es.push(service);
 
-        // additional
-
-        // end additional
-
         var service = {};
         service.description = "User Service v1.0";
         service.url = "https://private.deciphernow.com/services/userservice/1.0/admin";
@@ -120,9 +116,9 @@
 
 
                 if (serviceInfo.hasServers) {
-                  serviceHtml += "<a class='service service-up' href=" + serviceInfo.url + "><h1 class='service-title'>" + serviceInfo.description + "</h1></a>";
+                  serviceHtml += "<div class='service service-up " + serviceInfo.url + "'><a href=" + serviceInfo.url + "'><h1 class='service-title'>" + serviceInfo.description + "</h1></a> <p class='service-links'><a class='metrics' href=''>Metrics</a></p></div>";
                 } else {
-                  serviceHtml += "<div class='service service-down'><h1 class='service-title'>" + serviceInfo.description + "</h1><p class='status'>Offline</p></div>";
+                  serviceHtml += "<div class='service service-down " + serviceInfo.url + "'><h1 class='service-title'>" + serviceInfo.description + "</h1><p class='status'>Offline</p></div>";
                 }
               }
             }
