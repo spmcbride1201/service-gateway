@@ -1,0 +1,26 @@
+.uk-navbar {
+  height: 40px;
+  background: #151515;
+}
+
+#product-logo {
+  margin-left: 20px;
+}
+
+#logo-text {
+  margin-left: 5px;
+  font-size: x-large;
+  color: #30B44A;
+}
+
+#decipher-logo {
+  width: '20px';
+}
+
+#product-logo {
+  width: '20px';
+}
+
+#architecture-diagram {
+  width: 90%;
+}
