@@ -136,10 +136,10 @@ a:focus {
   display: flex;
   flex-direction: column;
 
-  --service-order-heading-up: 0;
-  --service-order-services-up: 1;
-  --service-order-heading-down: 2;
-  --service-order-services-down: 3;
+  --service-order-heading-up: 00;
+  --service-order-services-up: 10;
+  --service-order-heading-down: 20;
+  --service-order-services-down: 30;
 }
 
 .services-list {
@@ -147,6 +147,7 @@ a:focus {
   -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
 }
 
@@ -208,10 +209,16 @@ a:focus {
   padding: 0;
 }
 
-.service[href*="aac"],
-.service[href*="object-drive"],
-.service[href*="apps"] {
-  margin-top: 0;
+.service[href*="aac"].service-up,
+.service[href*="object-drive"].service-up,
+.service[href*="apps"].service-up {
+  order: calc(var(--service-order-services-up) - 1);
+}
+
+.service[href*="aac"].service-down,
+.service[href*="object-drive"].service-down,
+.service[href*="apps"].service-down {
+  order: calc(var(--service-order-services-down) - 1);
 }
 
 .service.service-up {
@@ -220,11 +227,6 @@ a:focus {
 .service.service-up:after {
   color: var(--color-service-up);
   background-color: currentColor;
-}
-.service.service-down:after {
-  color: var(--color-service-down);
-  background-color: currentColor;
-  border-radius: 0;
 }
 
 .service.service-up .service-title {
@@ -240,10 +242,17 @@ a:focus {
 
 .service.service-down {
   order: var(--service-order-services-down);
-  background-color: rgba(0,0,0,.025);
   border-color: transparent;
+  color: rgba(0,0,0,.5);
 }
-
+.service.service-down .service-title {
+  opacity: .8;
+}
+.service.service-down:after {
+  color: var(--color-service-down);
+  background-color: currentColor;
+  border-radius: 0;
+}
 
 
 
@@ -254,11 +263,18 @@ a:focus {
   background-image: url(../images/gm-data-bg.jpg);
   background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: center 15vh;
+  background-position: center 10vh;
 }
 .grey-matter-content h1 {
-  margin: 10vh auto 0;
+  margin: 5vh auto 0;
   max-width: 480px;
+  width: 70%;
+}
+.grey-matter-content .gm-diagram {
+  max-width: 901px;
+  width: 85%;
+  display: block;
+  margin: 5vh auto 0;
 }
 
 
