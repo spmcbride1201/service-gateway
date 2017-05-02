@@ -55,8 +55,9 @@
   <!-- END CONTENT HEADER -->
   <div class="container">
     <div class="services-content">
-      <h3>Services</h3>
-      <div id="services" class="services-list"></div>
+      <h1>Services</h1>
+      <div id="services" class="services-list">
+      </div>
       <script>
         //Build object model
         var serviceList = {};
@@ -96,6 +97,10 @@
         service.hasServers = false;
         serviceList.es.push(service);
 
+        // additional
+
+        // end additional
+
         var service = {};
         service.description = "User Service v1.0";
         service.url = "https://private.deciphernow.com/services/userservice/1.0/admin";
@@ -129,7 +134,9 @@
       </script>
     </div>
     <div class="grey-matter-content">
-
+      <h1 id="grey-matter">
+        <img alt='Gray Matter Logo' class="gm-logo" src='./images/gm-logo.png' />
+      </h1>
     </div>
   </div>
 </body>
