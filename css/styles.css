@@ -7,6 +7,7 @@
 
   --color-background-black: #000;
   --color-background-grey: #151515;
+  --color-background-grey-light: #212121;
 
   --color-brand-primary: #0aab2a;
   --color-brand-a11y: #05801D;
@@ -45,6 +46,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-stack-base);
+  font-weight: 500;
 }
 
 a,
@@ -69,7 +71,8 @@ a:focus {
 }
 
 .services-content,
-.grey-matter-content {
+.grey-matter-content,
+.decipher-content {
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 50%;
@@ -84,6 +87,12 @@ a:focus {
 
 .grey-matter-content {
   padding: var(--padding-base);
+}
+
+.decipher-content {
+  padding: var(--padding-base);
+  flex: 0 0 350px;
+  width: 300px;
 }
 
 
@@ -295,6 +304,63 @@ a:focus {
   width: 85%;
   display: block;
   margin: 5vh auto 0;
+}
+
+
+
+/* Decipher Content */
+
+.decipher-content {
+  position: relative;
+  border-left: 1px solid rgba(255,255,255,.1);
+}
+.decipher-content:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-background-grey);
+  opacity: .5;
+  z-index: 0;
+}
+.decipher-content > * {
+  z-index: 1;
+  position: relative;
+}
+.decipher-content .tagline {
+  font-size: var(--font-size-plus-4);
+  text-align: center;
+  line-height: 1.1;
+  font-weight: 100;
+  padding: calc(var(--padding-base) * 4) var(--padding-base);
+}
+.decipher-links .link {
+  display: block;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  padding: var(--padding-base) 0;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.decipher-links .link img{
+  float: left;
+  margin-right: var(--padding-base);
+}
+
+.decipher-links .link p,
+.decipher-links .link h6 {
+  margin: 0 0 0 48px;
+}
+.decipher-links .link p {
+  color: #ddd;
+  font-weight: 500;
+}
+.decipher-links .link h6 {
+  color: #fff;
+  font-weight: 600;
 }
 
 
