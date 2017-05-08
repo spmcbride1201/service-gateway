@@ -38,11 +38,11 @@
   <div class="header content rows-content-header">
 
     <!-- BEGIN: Navigation bar -->
-    <nav class="uk-navbar">
+    <nav class="uk-navbar navbar">
       <div class="uk-navbar-left">
         <div class="uk-navbar-item uk-logo">
           <img alt='Decipher Logo' id='decipher-logo' class="logo" src='./images/decipherLogo.svg' />
-          <img alt='Gray Matter Logo' class="logo" id="product-logo" src='./images/gmFabricLogo.svg' />
+          <img alt='Gray Matter Logo' class="logo" id="product-logo" src='./images/gm-fabric-logo.svg' />
           <span class="logo" id="logo-text">
             Fabric
           </span>
@@ -53,98 +53,114 @@
 
   </div>
   <!-- END CONTENT HEADER -->
-  <div class="uk-container">
-    <div uk-grid>
-      <div class="uk-width-1-2 uk-card uk-card-default">
-        <h3 class="uk-card-title">Grey Matter Fabric Architecture</h3>
-        <img id="architecture-diagram" src="./images/diagram-gm-fabric.png">
+  <div class="container">
+    <div class="services-content">
+      <h1>Services</h1>
+      <div id="services" class="services-list">
       </div>
-      <div class="uk-width-1-2 uk-card uk-card-default">
-        <h3 class="uk-card-title">Grey Matter Fabric Architecture</h3>
-        <img id="architecture-diagram" src="./images/diagram-gm-fabric.png">
-      </div>
-      <div class="uk-width-1-1 uk-card uk-card-default">
-        <h3 class="uk-card-title">Services</h3>
-        <b><i>Online Service Registry:</i></b>
-        </br>
-        <div id="services"></div>
-        <script>
-          //Build object model
-          var serviceList = {};
+      <script>
+        //Build object model
+        var serviceList = {};
 
-          serviceList.aac = [];
-          serviceList.aac = [];
-          serviceList.apps = [];
-          serviceList.apps = [];
-          serviceList.user = [];
-          serviceList.user = [];
-          serviceList.odrive = [];
-          serviceList.es = [];
-          serviceList.es = [];
-          var service = {};
+        serviceList.aac = [];
+        serviceList.aac = [];
+        serviceList.apps = [];
+        serviceList.apps = [];
+        serviceList.user = [];
+        serviceList.user = [];
+        serviceList.odrive = [];
+        serviceList.es = [];
+        serviceList.es = [];
 
-          service.description = "Grey Matter Security v1.1";
-          service.url = "https://private.deciphernow.com/services/aac/1.1/admin";
-          service.hasServers = true;
-          serviceList.aac.push(service);
+        var service = {};
+        service.description = "Grey Matter Security v1.1";
+        service.url = "https://private.deciphernow.com/services/aac/1.1/admin";
+        service.hasServers = true;
+        serviceList.aac.push(service);
 
-          var service = {};
-          service.description = "Grey Matter Apps v1.0";
-          service.url = "https://private.deciphernow.com/services/apps/1.0/admin";
-          service.hasServers = true;
-          serviceList.apps.push(service);
+        var service = {};
+        service.description = "Grey Matter Apps v1.0";
+        service.url = "https://private.deciphernow.com/services/apps/1.0/admin";
+        service.hasServers = true;
+        serviceList.apps.push(service);
 
 
-          var service = {};
-          service.description = "Grey Matter Data v1.0";
-          service.url = "https://private.deciphernow.com/services/object-drive/1.0/";
-          service.hasServers = true;
-          serviceList.odrive.push(service);
+        var service = {};
+        service.description = "Grey Matter Data v1.0";
+        service.url = "https://private.deciphernow.com/services/object-drive/1.0/";
+        service.hasServers = true;
+        serviceList.odrive.push(service);
 
-          var service = {};
-          service.description = "Elasticsearch Security Service v1.0";
-          service.url = "https://private.deciphernow.com/services/ess/1.0/admin";
-          service.hasServers = true;
-          serviceList.es.push(service);
+        var service = {};
+        service.description = "Elasticsearch Security Service v1.0";
+        service.url = "https://private.deciphernow.com/services/ess/1.0/admin";
+        service.hasServers = false;
+        serviceList.es.push(service);
 
-          var service = {};
-          service.description = "User Service v1.0";
-          service.url = "https://private.deciphernow.com/services/userservice/1.0/admin";
-          service.hasServers = true;
-          serviceList.user.push(service);
+        var service = {};
+        service.description = "User Service v1.0";
+        service.url = "https://private.deciphernow.com/services/userservice/1.0/admin";
+        service.hasServers = true;
+        serviceList.user.push(service);
 
-          //Create HTML based on categories
-          var serviceHtml = '';
-          for (var serviceCategory in serviceList) {
+        //Create HTML based on categories
+        var serviceHtml = '';
+        for (var serviceCategory in serviceList) {
 
-            if (serviceCategory != 'hide') {
-              if (serviceList.hasOwnProperty(serviceCategory)) {
-                var serviceEndpoints = serviceList[serviceCategory];
+          if (serviceCategory != 'hide') {
+            if (serviceList.hasOwnProperty(serviceCategory)) {
+              var serviceEndpoints = serviceList[serviceCategory];
 
-                for (var service in serviceEndpoints) {
-                  var serviceInfo = serviceEndpoints[service];
+              for (var service in serviceEndpoints) {
+                var serviceInfo = serviceEndpoints[service];
 
 
-                  if (serviceInfo.hasServers) {
-                    serviceHtml += "<a href=" + serviceInfo.url + ">" + serviceInfo.description + "</a></br>";
-                  } else {
-                    serviceHtml += "<i>" + serviceInfo.description + " - Is OffLine</i></br>";
-                  }
+                if (serviceInfo.hasServers) {
+                  serviceHtml += "<div class='service service-up " + serviceInfo.url + "'><a href=" + serviceInfo.url + "'><h1 class='service-title'>" + serviceInfo.description + "</h1></a> <p class='service-links'><a class='metrics' href=''>Metrics</a></p></div>";
+                } else {
+                  serviceHtml += "<div class='service service-down " + serviceInfo.url + "'><h1 class='service-title'>" + serviceInfo.description + "</h1><p class='status'>Offline</p></div>";
                 }
-
-                serviceHtml += "</br>"
               }
             }
           }
+        }
+        serviceHtml += '<p class="services-heading services-heading-up">Up</p> <p class="services-heading services-heading-down">Down</p>';
+        document.getElementById("services").innerHTML = serviceHtml;
 
-          document.getElementById("services").innerHTML = serviceHtml;
+      </script>
+    </div>
+    <div class="grey-matter-content">
+      <h1 id="grey-matter">
+        <img alt='Gray Matter Logo' class="gm-logo" src='./images/gm-logo.png' />
+      </h1>
+    </div>
 
-        </script>
+    <div class="decipher-content">
+      <img src="./images/decipher-logo-full.png" />
+      <p class="tagline">Software for your sixth sense.</p>
+      <div class="decipher-links">
+        <a href="https://github.com/deciphernow" class="link">
+          <img src="./images/icons/octocat.svg" />
+          <h6>GitHub</h6>
+          <p>github.com/DecipherNow</p>
+        </a>
+        <a href="https://twitter.com/deciphernow" class="link">
+          <img src="./images/icons/twitter.svg" />
+          <h6>Twitter</h6>
+          <p>twitter.com/DecipherNow</p>
+        </a>
+        <a href="https://linkedin.com/company/decipher-technology-studios" class="link">
+          <img src="./images/icons/linkedin.svg" />
+          <h6>LinkedIn</h6>
+          <p>linkedin.com/company/decipher-technology-studios</p>
+        </a>
+        <a href="https://index.co/company/decipher-technology-studios" class="link">
+          <img src="./images/icons/index.svg" />
+          <h6>Index by TNW</h6>
+          <p>index.co/company/decipher-technology-studios</p>
+        </a>
       </div>
     </div>
-    </br>
-    </br>
-
   </div>
 </body>
 
