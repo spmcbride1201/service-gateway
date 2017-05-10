@@ -1,0 +1,16 @@
+{
+  "clusters": [
+    {
+      "category": "aac_v1_1",
+      "description": "Security Service v1.1",
+      "context": "/services/aac/1.1/",
+      "hasServers": "true"
+    },
+    {
+      "category": "odrive_v1_0",
+      "description": "oDrive Service v1.0",
+      "context": "/services/object-drive/1.0/",
+      "hasServers": "true"
+    }
+  ]
+}

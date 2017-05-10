@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <link rel="stylesheet" href="static/css/error.css" />
+  <link rel="stylesheet" href="./css/error.css" />
   <link rel="stylesheet" href="./css/uikit.min.css" />
   <link rel="stylesheet" href="./css/styles.css" />
 
@@ -59,49 +59,20 @@
       <div id="services" class="services-list">
       </div>
       <script>
+
         //Build object model
         var serviceList = {};
+	{{#clusters}}
+          serviceList.{{category}} = [];
+        {{/clusters}}
+        {{#clusters}}
+          var service = {};
+          service.description = "{{description}}";
+          service.url = "https://private.deciphernow.com{{context}}";
+          service.hasServers = {{hasServers}};
 
-        serviceList.aac = [];
-        serviceList.aac = [];
-        serviceList.apps = [];
-        serviceList.apps = [];
-        serviceList.user = [];
-        serviceList.user = [];
-        serviceList.odrive = [];
-        serviceList.es = [];
-        serviceList.es = [];
-
-        var service = {};
-        service.description = "Grey Matter Security v1.1";
-        service.url = "https://private.deciphernow.com/services/aac/1.1/admin";
-        service.hasServers = true;
-        serviceList.aac.push(service);
-
-        var service = {};
-        service.description = "Grey Matter Apps v1.0";
-        service.url = "https://private.deciphernow.com/services/apps/1.0/admin";
-        service.hasServers = true;
-        serviceList.apps.push(service);
-
-
-        var service = {};
-        service.description = "Grey Matter Data v1.0";
-        service.url = "https://private.deciphernow.com/services/object-drive/1.0/";
-        service.hasServers = true;
-        serviceList.odrive.push(service);
-
-        var service = {};
-        service.description = "Elasticsearch Security Service v1.0";
-        service.url = "https://private.deciphernow.com/services/ess/1.0/admin";
-        service.hasServers = false;
-        serviceList.es.push(service);
-
-        var service = {};
-        service.description = "User Service v1.0";
-        service.url = "https://private.deciphernow.com/services/userservice/1.0/admin";
-        service.hasServers = true;
-        serviceList.user.push(service);
+          serviceList.{{category}}.push(service);
+        {{/clusters}}
 
         //Create HTML based on categories
         var serviceHtml = '';
@@ -116,7 +87,14 @@
 
 
                 if (serviceInfo.hasServers) {
-                  serviceHtml += "<div class='service service-up " + serviceInfo.url + "'><a href=" + serviceInfo.url + "'><h1 class='service-title'>" + serviceInfo.description + "</h1></a> <p class='service-links'><a class='metrics' href=''>Metrics</a></p></div>";
+                  serviceHtml += "<div class='service service-up " + serviceInfo.url + "'>";
+                  if(serviceInfo.url.indexOf("/admin") > -1) {
+                    var gmadminURL = serviceInfo.url.replace("/admin", "/gmadmin/");
+                    serviceHtml += "<a href=" + gmadminURL + ">";
+                  } else {
+                    serviceHtml += "<a href=" + serviceInfo.url + ">";
+                  }
+                  serviceHtml += "<h1 class='service-title'>" + serviceInfo.description + "</h1></a> <p class='service-links'><a class='metrics' href=''>Metrics</a></p></div>";
                 } else {
                   serviceHtml += "<div class='service service-down " + serviceInfo.url + "'><h1 class='service-title'>" + serviceInfo.description + "</h1><p class='status'>Offline</p></div>";
                 }
@@ -126,12 +104,11 @@
         }
         serviceHtml += '<p class="services-heading services-heading-up">Up</p> <p class="services-heading services-heading-down">Down</p>';
         document.getElementById("services").innerHTML = serviceHtml;
-
       </script>
     </div>
     <div class="grey-matter-content">
       <h1 id="grey-matter">
-        <img alt='Gray Matter Logo' class="gm-logo" src='./images/gm-logo.png' />
+        <img alt='Gray Matter Logo' class="gm-logo" src="./images/gm-logo.png" />
       </h1>
     </div>
 
@@ -162,6 +139,10 @@
       </div>
     </div>
   </div>
+  <script>
+
+
+  </script>
 </body>
 
 </html>

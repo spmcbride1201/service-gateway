@@ -1,0 +1,37 @@
+{
+  "name": "service-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "watch": {
+    "buildAndServe": {
+      "patterns": [
+        "templates",
+        "properties"
+      ],
+      "extensions": "mustache,json"
+    }
+  },
+  "scripts": {
+    "start": "npm-watch",
+    "build": "./node_modules/mustache/bin/mustache ./properties/gatekeeperMock.json ./templates/html.mustache > ./index.html",
+    "serve": "./node_modules/serve/bin/serve.js .",
+    "buildAndServe": "npm run build && npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spmcbride1201/service-gateway.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spmcbride1201/service-gateway/issues"
+  },
+  "homepage": "https://github.com/spmcbride1201/service-gateway#readme",
+  "dependencies": {
+    "mustache": "^2.3.0",
+    "npm-watch": "^0.1.9",
+    "serve": "^5.1.5"
+  }
+}
